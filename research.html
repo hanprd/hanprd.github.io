@@ -33,9 +33,13 @@
   <p>Three connected research thrusts realize this vision, illustrated below.</p>
 
   <figure>
-    <img src="images/research-thrusts.png" alt="Diagram of three connected research thrusts: (1) Generalizable and human-centered physical AI for manufacturing, built around a Large Engineering Model for Manufacturing (LEM²) and a Manufacturing World Model (MWM); (2) human-robot collaboration and heterogeneous multi-robot systems for in-space servicing, assembly, and manufacturing (ISAM); and (3) autonomous in-situ resource utilization (ISRU) manufacturing for planetary infrastructure, moving from resource exploration and acquisition to processing, construction, and manufacturing in space.">
-    <figcaption>Figure 1. Overview of the three research thrusts.</figcaption>
+    <img id="research-fig" class="zoomable" src="images/research-thrusts.png" alt="Diagram of three connected research thrusts: (1) Generalizable and human-centered physical AI for manufacturing, built around a Large Engineering Model for Manufacturing (LEM²) and a Manufacturing World Model (MWM); (2) human-robot collaboration and heterogeneous multi-robot systems for in-space servicing, assembly, and manufacturing (ISAM); and (3) autonomous in-situ resource utilization (ISRU) manufacturing for planetary infrastructure, moving from resource exploration and acquisition to processing, construction, and manufacturing in space." tabindex="0" role="button" aria-label="Click to enlarge figure">
+    <figcaption>Figure 1. Overview of the three research thrusts. Click to enlarge.</figcaption>
   </figure>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
   <div class="thrust">
     <h3>1. Generalizable and Human-Centered Physical AI for Manufacturing</h3>
@@ -59,5 +63,39 @@
 <footer class="site-footer">
   <div class="wrap">Changheon Han &middot; School of Aeronautics and Astronautics, Purdue University</div>
 </footer>
+
+<script>
+  (function () {
+    var fig = document.getElementById("research-fig");
+    var lightbox = document.getElementById("lightbox");
+    var lightboxImg = document.getElementById("lightbox-img");
+
+    function openLightbox() {
+      lightboxImg.src = fig.src;
+      lightboxImg.alt = fig.alt;
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    fig.addEventListener("click", openLightbox);
+    fig.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox();
+      }
+    });
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>
